@@ -6,7 +6,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
-import crud.com.example.crudspring.entity.UserEntity;
+import crud.com.example.crudspring.DTO.UserDTO;
+
 import crud.com.example.crudspring.services.UserService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,29 +27,29 @@ UserController(UserService userService){
 }
 
 
-    @GetMapping()
-    public List<UserEntity> getUser(){
+    @GetMapping()   
+    public List<UserDTO> getUser(){
         return this._userService.list();
     }
 
     @PostMapping()
-    public List<UserEntity> createUser(@RequestBody UserEntity entity) {
-        return this._userService.createUser(entity);
+    public List<UserDTO> createUser(@RequestBody UserDTO UserDTO) {
+        return this._userService.createUser(UserDTO);
     }
 
     @PutMapping()
-    public List<UserEntity> updateUser(@RequestBody UserEntity entity) {
+    public List<UserDTO> updateUser(@RequestBody UserDTO UserDTO) {
         
-        return this._userService.updateUser(entity);
+        return this._userService.updateUser(UserDTO);
     }
 
     @DeleteMapping("{id}")
-    public List<UserEntity> deleteUser(@PathVariable("id") Long id){
+    public List<UserDTO> deleteUser(@PathVariable("id") Long id){
         return this._userService.deleteUser(id);
     }
 
     @GetMapping("{id}")
-    public UserEntity findUserById(@PathVariable("id") Long id) {
+    public UserDTO findUserById(@PathVariable("id") Long id) {
         return this._userService.findByIdUser(id);
     }
     

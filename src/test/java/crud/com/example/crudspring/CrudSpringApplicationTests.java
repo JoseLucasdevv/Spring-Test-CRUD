@@ -7,7 +7,13 @@ import org.springframework.boot.test.context.SpringBootTest;
 class CrudSpringApplicationTests {
 
 	@Test
-	void contextLoads() {
+	void testCreateUserSuccess() {
+
+	}
+
+	@Test
+	void testCreateUserFailure() {
+
 	}
 
 }

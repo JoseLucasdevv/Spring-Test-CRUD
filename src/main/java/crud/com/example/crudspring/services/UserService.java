@@ -1,39 +1,47 @@
 package crud.com.example.crudspring.services;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-
+import crud.com.example.crudspring.DTO.UserDTO;
 import crud.com.example.crudspring.entity.UserEntity;
+import crud.com.example.crudspring.mapper.UserMapper;
 import crud.com.example.crudspring.repositories.UserRepository;
 
 
 @Service
 public class UserService {
     
+private UserMapper _UserMapper;   
 private UserRepository _UserRepository;
 
- public UserService( UserRepository UserRepository){
+ public UserService( UserRepository UserRepository, UserMapper UserMapper){
     this._UserRepository = UserRepository;
+    this._UserMapper = UserMapper;
  }
 
  
-public List<UserEntity> list(){
+public List<UserDTO> list(){
 Sort sort = Sort.by("name").descending().and(Sort.by("age").ascending());
+return this._UserRepository.findAll(sort)
+.stream()
+.map(user -> _UserMapper.entityToDto(user))
+.collect(Collectors.toList());
 
-return this._UserRepository.findAll(sort);
+  
 
 }
 
-public List<UserEntity> createUser(UserEntity user){
-    this._UserRepository.save(user);
+public List<UserDTO> createUser(UserDTO userDTO){
+    this._UserRepository.save(_UserMapper.dtoToEntity(userDTO));
     
     return list();
  }
 
- public List<UserEntity> deleteUser(Long id){
+ public List<UserDTO> deleteUser(Long id){
    this._UserRepository.deleteById(id);
    
    return list();
@@ -41,16 +49,13 @@ public List<UserEntity> createUser(UserEntity user){
 
 
 
-public UserEntity findByIdUser(Long id){
-   UserEntity user;
-
-   user = this._UserRepository.findById(id).get();
-
-   return user;
+public UserDTO findByIdUser(Long id){
+   
+   return this._UserRepository.findById(id).map(user -> _UserMapper.entityToDto(user)).get();
 }
 
-public List<UserEntity> updateUser(UserEntity user){
-   this._UserRepository.save(user);
+public List<UserDTO> updateUser(UserDTO userDTO){
+   this._UserRepository.save(_UserMapper.dtoToEntity(userDTO));
    
    return list();
 }
