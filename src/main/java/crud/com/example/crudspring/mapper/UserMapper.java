@@ -13,7 +13,7 @@ public class UserMapper {
             return null;
         };
 
-        return new UserDTO(userEntity.getId(),userEntity.getCpf(),userEntity.getAge(),userEntity.getName());
+        return new UserDTO(userEntity.getId(),userEntity.getName(),userEntity.getAge(),userEntity.getCpf());
 
     }
     
@@ -29,10 +29,9 @@ public class UserMapper {
         user.setCpf(userDTO.getCpf());
         user.setAge(userDTO.getAge());
         user.setName(userDTO.getName());
-        
+
         return user;
     
-
 
     }
     

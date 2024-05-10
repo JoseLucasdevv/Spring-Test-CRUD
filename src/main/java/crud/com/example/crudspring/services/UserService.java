@@ -7,7 +7,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import crud.com.example.crudspring.DTO.UserDTO;
-import crud.com.example.crudspring.entity.UserEntity;
+
 import crud.com.example.crudspring.mapper.UserMapper;
 import crud.com.example.crudspring.repositories.UserRepository;
 
