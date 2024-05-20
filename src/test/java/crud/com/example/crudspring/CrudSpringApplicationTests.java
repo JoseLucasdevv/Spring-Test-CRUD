@@ -31,17 +31,16 @@ class CrudSpringApplicationTests {
 			.isEqualTo(user.getAge())
 			.jsonPath("$[0].cpf")
 			.isEqualTo(user.getCpf());
-
-
 		}
 
 	@Test
 	void testCreateUserFailure() {
-		_webTestClient.post().uri("api/user").bodyValue(new UserDTO(id,"",10,"")).exchange().expectStatus().isBadRequest();
-
-
-
-		}
+		_webTestClient.post().uri("api/user").
+		bodyValue(new UserDTO(id,"",10,""))
+		.exchange
+		().expectStatus()
+		.isBadRequest();
+	}
 
 
 }

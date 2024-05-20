@@ -11,11 +11,11 @@ public class UserMapper {
     public UserDTO entityToDto(UserEntity userEntity){
         if(userEntity == null){
             return null;
-        };
+        }
 
         return new UserDTO(userEntity.getId(),userEntity.getName(),userEntity.getAge(),userEntity.getCpf());
 
-    }
+    };
     
 
     public UserEntity dtoToEntity (UserDTO userDTO){
@@ -25,7 +25,7 @@ public class UserMapper {
         UserEntity user = new UserEntity();
         if(userDTO.getId() != null){
             user.setId(userDTO.getId());
-        };
+        }
         user.setCpf(userDTO.getCpf());
         user.setAge(userDTO.getAge());
         user.setName(userDTO.getName());
