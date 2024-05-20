@@ -4,7 +4,12 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 import java.util.List;
+
+import org.springframework.http.HttpStatus;
+
+import org.springframework.http.ResponseEntity;
 
 import crud.com.example.crudspring.DTO.UserDTO;
 
@@ -31,29 +36,30 @@ public class UserController {
     }
 
     @GetMapping()   
-    public List<UserDTO> getUser(){
-        return this._userService.list();
+    public ResponseEntity<List<UserDTO>> getUser(){
+        return new ResponseEntity<>(this._userService.list(),HttpStatus.OK);
     }
 
     @PostMapping()
-    public List<UserDTO> createUser(@Valid @RequestBody UserDTO UserDTO) {
-        return this._userService.createUser(UserDTO);
+    public ResponseEntity<List<UserDTO>> createUser(@Valid @RequestBody UserDTO UserDTO) {
+        
+        return new ResponseEntity<>(this._userService.createUser(UserDTO),HttpStatus.CREATED);
     }
 
-    @PutMapping()
-    public List<UserDTO> updateUser(@RequestBody UserDTO UserDTO) {
+    @PutMapping("{id}")
+    public ResponseEntity<List<UserDTO>> updateUser(@PathVariable long id,@RequestBody UserDTO UserDTO) {
         
-        return this._userService.updateUser(UserDTO);
+        return new ResponseEntity<>(this._userService.updateUser(id,UserDTO),HttpStatus.OK);
     }
 
     @DeleteMapping("{id}")
-    public List<UserDTO> deleteUser(@PathVariable("id") Long id){
-        return this._userService.deleteUser(id);
+    public ResponseEntity<List<UserDTO>> deleteUser(@PathVariable("id") Long id){
+        return new ResponseEntity<>(this._userService.deleteUser(id),HttpStatus.OK);
     }
 
     @GetMapping("{id}")
-    public UserDTO findUserById(@PathVariable("id") Long id) {
-        return this._userService.findByIdUser(id);
+    public ResponseEntity<UserDTO> findUserById(@PathVariable("id") Long id) {
+        return new ResponseEntity<>(this._userService.findByIdUser(id),HttpStatus.OK);
     }
     
 }
