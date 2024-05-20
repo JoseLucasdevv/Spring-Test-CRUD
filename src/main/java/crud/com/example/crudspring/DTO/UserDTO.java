@@ -2,12 +2,17 @@ package crud.com.example.crudspring.DTO;
 
 import crud.com.example.crudspring.entity.UserEntity;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 public class UserDTO {
     @Id
     private Long id;
+    @NotBlank
     private String name;
+    @NotNull
     private Integer age;
+    @NotBlank
     private String cpf;
 
     public UserDTO(Long id,String name,Integer age, String cpf){

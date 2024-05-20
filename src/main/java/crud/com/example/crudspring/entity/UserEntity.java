@@ -2,6 +2,8 @@ package crud.com.example.crudspring.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.persistence.Id;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -12,8 +14,11 @@ public class UserEntity {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
+    @NotBlank
     private String name;
+    @NotNull
     private Integer age;
+    @NotBlank
     private String cpf;
 
     public Long getId(){

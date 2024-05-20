@@ -9,6 +9,8 @@ import java.util.List;
 import crud.com.example.crudspring.DTO.UserDTO;
 
 import crud.com.example.crudspring.services.UserService;
+import jakarta.validation.Valid;
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -16,16 +18,17 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 
 
+
 @RestController
 @RequestMapping("api/user")
 public class UserController {
 
-    private UserService _userService;
+   
+    final private UserService _userService;
 
-UserController(UserService userService){
-    this._userService = userService;
-}
-
+    public UserController(UserService UserService){
+        this._userService = UserService;
+    }
 
     @GetMapping()   
     public List<UserDTO> getUser(){
@@ -33,7 +36,7 @@ UserController(UserService userService){
     }
 
     @PostMapping()
-    public List<UserDTO> createUser(@RequestBody UserDTO UserDTO) {
+    public List<UserDTO> createUser(@Valid @RequestBody UserDTO UserDTO) {
         return this._userService.createUser(UserDTO);
     }
 
@@ -53,5 +56,4 @@ UserController(UserService userService){
         return this._userService.findByIdUser(id);
     }
     
-
 }
