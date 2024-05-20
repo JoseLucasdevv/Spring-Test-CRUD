@@ -12,11 +12,12 @@ import crud.com.example.crudspring.mapper.UserMapper;
 import crud.com.example.crudspring.repositories.UserRepository;
 
 
+
 @Service
 public class UserService {
     
-private UserMapper _UserMapper;   
-private UserRepository _UserRepository;
+private final UserMapper _UserMapper;   
+private final UserRepository _UserRepository;
 
  public UserService( UserRepository UserRepository, UserMapper UserMapper){
     this._UserRepository = UserRepository;
@@ -36,6 +37,8 @@ return this._UserRepository.findAll(sort)
 }
 
 public List<UserDTO> createUser(UserDTO userDTO){
+   
+
     this._UserRepository.save(_UserMapper.dtoToEntity(userDTO));
     
     return list();
