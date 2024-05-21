@@ -42,9 +42,10 @@ public class UserController {
 
     @PostMapping()
     public ResponseEntity<List<UserDTO>> createUser(@Valid @RequestBody UserDTO UserDTO) {
-        
+          
         return new ResponseEntity<>(this._userService.createUser(UserDTO),HttpStatus.CREATED);
-    }
+        
+    };
 
     @PutMapping("{id}")
     public ResponseEntity<List<UserDTO>> updateUser(@PathVariable long id,@RequestBody UserDTO UserDTO) {

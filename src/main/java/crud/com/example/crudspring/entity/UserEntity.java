@@ -1,12 +1,12 @@
 package crud.com.example.crudspring.entity;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import jakarta.persistence.Id;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 
 @Entity()
 @Table(name="Users")
@@ -14,11 +14,11 @@ public class UserEntity {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
-    @NotBlank
+    @NotBlank(message="This field may not be empty")
     private String name;
-    @NotNull
+    @NotNull(message="This field may not be null")
     private Integer age;
-    @NotBlank
+    @NotBlank(message="This field may ne be empty")
     private String cpf;
 
     public Long getId(){

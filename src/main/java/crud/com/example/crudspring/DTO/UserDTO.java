@@ -8,11 +8,11 @@ import jakarta.validation.constraints.NotNull;
 public class UserDTO {
     @Id
     private Long id;
-    @NotBlank
+    @NotBlank(message ="This field may not be empty")
     private String name;
-    @NotNull
+    @NotNull(message="This field may not be empty")
     private Integer age;
-    @NotBlank
+    @NotBlank(message="This field may not be empty")
     private String cpf;
 
     public UserDTO(Long id,String name,Integer age, String cpf){
